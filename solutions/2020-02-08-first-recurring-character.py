@@ -21,3 +21,9 @@ print(first_recurring_char('qwertty'))
 print(first_recurring_char('qwerty'))
 # None
 '''
+
+def first_recurring_char(s):
+    char_set = set()
+    for c in s:
+        if c in char_set: return c
+        char_set.add(c)
