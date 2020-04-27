@@ -1,6 +1,2 @@
 .env
 token.pickle
-import-daily-interview-gmail.py
-lib/
-last-import.json
-/imported
