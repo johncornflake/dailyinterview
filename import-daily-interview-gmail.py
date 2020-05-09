@@ -7,6 +7,8 @@ import sys
 import json
 import email
 import base64
+import re
+from bs4 import BeautifulSoup as bs
 from pprint import pprint
 
 sys.path.append('lib')
@@ -105,7 +107,6 @@ def getMessage(service, msg_id):
 
 
 def getProblemName(headers):
-    import re
     # subject should always be "[Daily Problem] Problem Name" and this will
     # take the problem name, make it lowercase, and replace spaces with a dash
     subject = [i['value'] for i in headers if i['name'] == 'Subject'][0]
@@ -132,17 +133,12 @@ def createProblemFile(problem_content, problem_name, target_folder):
 
 
 def createProblemContent(message):
-    #msg_str = base64.urlsafe_b64decode(message['raw'].encode("utf-8")).decode("utf-8")
-    #mime_msg = email.message_from_string(msg_str)
-    #mime_msg = email.message_from_string(message['raw'])
-    #e = mime_msg.keys()
-
-    #pprint(mime_msg.get_body(preferencelist=('related', 'html', 'plain')))
-
-    #pprint(e)
-    #pprint(mime_msg.as_string())
-    #exit()
-    problem_content = 'placeholder text'
+    msg_str = base64.urlsafe_b64decode(message['raw'].encode("utf-8")).decode("utf-8")
+    msg = email.message_from_string(msg_str).get_payload()
+    msg_soup = bs(msg, features="html.parser")
+    prob = msg_soup.get_text('\n').strip()
+    prob_stripped_suffix = re.sub('(Upgrade\sto\sPRO)(.+|\n)+', '', prob)
+    problem_content = re.sub('#', '\n#', prob_stripped_suffix)
 
     return problem_content
 
