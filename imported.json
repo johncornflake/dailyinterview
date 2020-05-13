@@ -1,5 +1,5 @@
 {
-    "lastImport": "2020-05-11",
+    "lastImport": "2020-05-12",
     "importedProblems": [
         "2020-05-09-longest-substring-without-repeating-characters",
         "2020-05-08-split-a-binary-search-tree",
@@ -221,6 +221,7 @@
         "2019-10-02-longest-substring-without-repeating-characters",
         "2019-10-01-add-two-numbers-as-a-linked-list",
         "2020-05-11-longest-substring-with-k-distinct-characters",
-        "2020-05-10-reshaping-matrix"
+        "2020-05-10-reshaping-matrix",
+        "2020-05-12-number-of-connected-components"
     ]
 }
