@@ -9,7 +9,6 @@ import email
 import base64
 import re
 from bs4 import BeautifulSoup as bs
-from pprint import pprint
 
 sys.path.append('lib')
 from gmailauthentication import readOnlyGmailAuth
@@ -57,11 +56,11 @@ class importFile:
 
 def listMessages(service, last_import):
     query = f'after:{last_import} from:(daily@techseries.dev) subject:([Daily Problem])'
-    response = service.users().messages().list(userId='me',
-                                            q=query,
-                                            #labelIds=label_ids,
-                                            includeSpamTrash=False
-                                            ).execute()
+    response = service.users().messages().list(
+        userId='me',
+        q=query,
+        includeSpamTrash=False
+        ).execute()
 
     messages = []
     if 'messages' in response: messages.extend(response['messages'])
@@ -84,20 +83,20 @@ def listMessages(service, last_import):
 
 
 def getMessage(service, msg_id):
-    '''
-    Get raw message and meta data from a given message id
-    '''
+    '''Get raw message and meta data from a given message id'''
     try:
-        message = service.users().messages().get(userId='me',
-                                              id=msg_id,
-                                              format='raw'
-                                              ).execute()
+        message = service.users().messages().get(
+            userId='me',
+            id=msg_id,
+            format='raw'
+            ).execute()
 
-        meta_data = service.users().messages().get(userId='me',
-                                                id=msg_id,
-                                                format='metadata',
-                                                metadataHeaders=['Subject', 'X-SES-Outgoing']
-                                                ).execute()
+        meta_data = service.users().messages().get(
+            userId='me',
+            id=msg_id,
+            format='metadata',
+            metadataHeaders=['Subject', 'X-SES-Outgoing']
+            ).execute()
 
         message['metaData'] = meta_data
         return message
@@ -151,7 +150,7 @@ def main():
     imported_problems = importInfo.importedProblems()
 
     # get gmail service object
-    gmail = readOnlyGmailAuth(getenv('GOOGLE_CLIENT_SECRETS_FILE'))
+    gmail = readOnlyGmailAuth()
 
     messages = listMessages(gmail, last_import)
 

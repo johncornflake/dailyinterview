@@ -1,11 +1,14 @@
 from __future__ import print_function
 import pickle
 import os.path
+from os import getenv
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-def readOnlyGmailAuth(client_secrets=None):
+client_secrets_loc = getenv('GOOGLE_CLIENT_SECRETS_FILE')
+
+def readOnlyGmailAuth(client_secrets=client_secrets_loc):
     SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is

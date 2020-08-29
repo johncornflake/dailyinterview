@@ -1,3 +1,4 @@
 .env
-token.pickle
+*.pickle
 */__pycache__/
+client_secrets.json
