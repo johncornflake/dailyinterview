@@ -1,5 +1,5 @@
 {
-    "lastImport": "2020-08-29",
+    "lastImport": "2020-09-06",
     "importedProblems": [
         "2020-05-09-longest-substring-without-repeating-characters",
         "2020-05-08-split-a-binary-search-tree",
@@ -331,6 +331,14 @@
         "2020-07-23-remove-adjacent-duplicate-characters",
         "2020-07-22-determine-if-linked-list-is-palindrome",
         "2020-07-21-kaprekars-constant",
-        "2020-07-20-convert-fraction-to-decimal"
+        "2020-07-20-convert-fraction-to-decimal",
+        "2020-09-06-twosum",
+        "2020-09-05-min-stack",
+        "2020-09-04-generate-all-ip-addresses",
+        "2020-09-03-generate-brackets",
+        "2020-09-02-perfect-number",
+        "2020-09-01-convert-to-base-two",
+        "2020-08-31-closest-points-to-origin",
+        "2020-08-30-concatenated-words"
     ]
 }
